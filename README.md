@@ -1,24 +1,23 @@
 # BASpy
 
-baspy is a python package to make it easier to analyse large climate datasets
-using Xarray (http://xarray.pydata.org), Iris (http://scitools.org.uk/iris/), 
+`baspy` is a python package to make it easier to analyse large climate datasets
+using Xarray (http://xarray.pydata.org), or Iris (http://scitools.org.uk/iris/), 
 or any other python package that can read in netcdf/PP/grib/HDF files.
 
 ### 1. Setup package
 
-Setup your PYTHONPATH to point to your directory of python scripts.  Then 
-download (or git clone) baspy python package.
+Package is now pip installable.
 
-```
-    $> mkdir ~/PYTHON
-    $> export PYTHONPATH="$HOME/PYTHON"  # <- add to ~/.bashrc
-    $> cd $PYTHONPATH
-    $> git clone https://github.com/scotthosking/baspy.git
+```bash
+    $> git clone https://github.com/sdat2/baspy.git
+    $> git checkout dev
+    $> cd baspy
+    $> pip install -e .
 ```
 
 ### 2. Define the directory and filename structures of your local datasets
 
-see and edit datasets.py
+See and edit datasets.py
 
 Once you have set this up all file loading should become transparent
 
@@ -26,7 +25,7 @@ Once you have set this up all file loading should become transparent
 
 Reading data:
 
-```
+```python
     import baspy as bp
  
     ### Retrieve a filtered version of the CMIP5 catalogue as a Pandas DataFrame
@@ -44,5 +43,6 @@ Reading data:
         cubes = bp.get_cube(row)
 ```
 
-Other Examples: 
-* [BASpy with Xarray (Notebook)](https://scotthosking.com/notebooks/baspy_using_xarray/)
+Other Examples:
+
+- [BASpy with Xarray (Notebook)](https://scotthosking.com/notebooks/baspy_using_xarray/)
