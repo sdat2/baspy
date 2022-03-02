@@ -30,8 +30,8 @@ __version__ = "1.1"
 
 ### Place to store catalogues and example data
 __baspy_path = os.path.expanduser("~/.baspy")
-if not os.path.exists(__baspy_path): 
-	os.makedirs(os.path.expanduser(__baspy_path))
+if not os.path.exists(__baspy_path):
+    os.makedirs(os.path.expanduser(__baspy_path))
 
 ### For sharing catalogues between users
 __catalogues_url = "http://gws-access.ceda.ac.uk/public/bas_climate/files/baspy/"
@@ -55,27 +55,29 @@ except ImportError:
     # Xarray is not installed
     pass
 
-__modules = sys.modules # must come before import baspy.util
+__modules = sys.modules  # must come before import baspy.util
 
 ### General Libraries
 from . import util
 from . import region
 from . import _catalogue
+
 catalogue = _catalogue.catalogue
 get_files = _catalogue.get_files
 
 ### Set up wrappers for iris, xarray etc
-if 'iris' in __modules:
+if "iris" in __modules:
     from . import _iris
-    eg_cube     = _iris.util.eg_cube
-    eg_cubelist = _iris.util.eg_cubelist
-    get_cubes   = _iris.get_cubes.get_cubes
-    get_cube    = _iris.get_cubes.get_cube
-    erai        = _iris.erai
 
-if 'xarray' in __modules:
+    eg_cube = _iris.util.eg_cube
+    eg_cubelist = _iris.util.eg_cubelist
+    get_cubes = _iris.get_cubes.get_cubes
+    get_cube = _iris.get_cubes.get_cube
+    erai = _iris.erai
+
+if "xarray" in __modules:
     from . import _xarray
-    eg_Dataset   = _xarray.util.eg_Dataset
+
+    eg_Dataset = _xarray.util.eg_Dataset
     eg_DataArray = _xarray.util.eg_DataArray
     open_dataset = _xarray.open_dataset
-

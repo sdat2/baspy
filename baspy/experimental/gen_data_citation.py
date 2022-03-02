@@ -9,7 +9,11 @@ import xml.etree.ElementTree as ET
 
 
 def generate_citation(
-    MIP: str, Centre: str, Model: str, Experiment: str, Version: str,
+    MIP: str,
+    Centre: str,
+    Model: str,
+    Experiment: str,
+    Version: str,
 ) -> dict:
     """Generate a data citation from minimum necessary information.
     The input is used to query CERA.
@@ -104,7 +108,10 @@ if __name__ == "__main__":
     # Get some data with baspy
     catlg = bp.catalogue(
         dataset="cmip6",
-        Experiment=["historical", "ssp245",],
+        Experiment=[
+            "historical",
+            "ssp245",
+        ],
         CMOR="day",
         Var=["tas", "hurs", "tasmax", "tasmin"],
         complete_var_set=True,
