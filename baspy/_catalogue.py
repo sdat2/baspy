@@ -669,17 +669,25 @@ def get_files(df):
     if len(pd.unique(list_file_extensions)) > 1:
         # Should we automatically select which extension to use?? (i.e., .nc vs .nc4) !!
         # Simon: yes, let's prefer .nc4 if both are present
-        # In the example 
+        # In the example
         # "/badc/cmip5/data/cmip5/output1/ICHEC/EC-EARTH/historical/mon/atmos/Amon/r1i1p1/v20131231/ts"
         # .nc and .nc4 files appear to be identical.
-        default_ending="nc4"
+        default_ending = "nc4"
 
         print(
-            ">> WARNING: Multiple file extensions present in " + directory + f" <<, keeping only .{default_ending}"
+            ">> WARNING: Multiple file extensions present in "
+            + directory
+            + f" <<, keeping only .{default_ending}"
         )
         if default_ending in list_file_extensions:
             files = [x for x in files if x.endswith(default_ending)]
         else:
-            raise ValueError(">> WARNING: Multiple file extensions present in " + directory + " <<")
+            # If the default ending isn't an option, fail this run.
+            print("file endings:", list_file_extensions)
+            raise ValueError(
+                ">> WARNING: Multiple file extensions present in "
+                + directory
+                + f" <<, not including .{default_ending}"
+            )
 
     return files
