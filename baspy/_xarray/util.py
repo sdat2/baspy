@@ -2,7 +2,7 @@ import xarray as xr
 import numpy as np
 
 
-def eg_Dataset():
+def eg_Dataset() -> xr.Dataset:
     """
     Load an example Xarray Dataset
     """
@@ -10,7 +10,7 @@ def eg_Dataset():
     import os
     import warnings
 
-    url = (
+    url = str(
         "http://esgdata.gfdl.noaa.gov/thredds/fileServer/"
         + "gfdl_dataroot3/CMIP/NOAA-GFDL/GFDL-AM4/amip/"
         + "r1i1p1f1/Amon/tas/gr1/v20180807/"
@@ -37,11 +37,11 @@ def eg_Dataset():
     return ds
 
 
-def eg_DataArray():
+def eg_DataArray() -> xr.DataArray:
     return eg_Dataset().tas
 
 
-def extract_region(da, bounds):
+def extract_region(da: xr.DataArray, bounds) -> xr.DataArray:
     """
     Extract region using pre-defined lat/lon bounds
 
@@ -57,6 +57,6 @@ def extract_region(da, bounds):
     return da
 
 
-def extract_ts_nearest_neighbour(da, coord):
+def extract_ts_nearest_neighbour(da: xr.DataArray, coord) -> xr.DataArray:
     da = da.interp(coords={"lat": coord["lat"], "lon": coord["lon"]}, method="nearest")
     return da
